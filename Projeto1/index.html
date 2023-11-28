@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DJV Cotação</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="scripts.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', {'packages':['corechart']});
+  </script>
+</head>
+
+<body class="geral">
+  <div class="cabecalho">
+    <p class="texto-cabecalho">DJV Dados de Câmbio</p>
+  </div>
+  <div class="corpo">
+    <img src="DJV.png" class="imagem-logo">
+    <div class="coluna">
+      <p>Tudo que você procura para cotação de câmbio você encontra aqui! </p>
+      <p>Com facilidade e agilidade, basta selecionar a data inicial, a data final, a moeda e o formato de retorno.</p>
+      <p>DJV Cotação: A solução que cabe no seu bolso.</p>
+    </div>
+
+
+
+  <div class="menu">
+    <form onsubmit="cotacao(this);return false;">
+      <div class="campo">
+        <label for="inicio">Data inicial</label>
+        <input type="date" name="inicio" id="inicio">
+      </div>
+      <div class="campo">
+        <label for="fim">Data final</label>
+        <input type="date" name="fim" id="fim">
+      </div>
+      <span>Moedas</span>
+      <div class="campo">
+        <input type="checkbox" name="moeda[]" id="usd" value="USD">
+        <label for="usd">Dólar</label>
+      </div>
+      <div class="campo">
+        <input type="checkbox" name="moeda[]" id="eur" value="EUR">
+        <label for="eur">Euro</label>
+      </div>
+      <div class="campo">
+        <input type="checkbox" name="moeda[]" id="gbp" value="GBP">
+        <label for="gbp">Libra Esterlina</label>
+      </div>
+      <div class="campo">
+        <span>Formato de retorno</span>
+        <input type="radio" name="retorno" id="grafico" value="G">
+        <label for="grafico">Gráfico</label>
+        <input type="radio" name="retorno" id="tabela" value="T">
+        <label for="tabela">Tabela</label>
+      </div>
+      <button type="submit">Consultar</button>
+    </form>
+    <ul>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="ajuda.html">Ajuda</a></li>
+    </ul>
+  </div>
+  <div class="conteudo">
+    <div id="USDData"></div>
+    <div id="EURData"></div>
+    <div id="GBPData"></div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+</body>
+</html>

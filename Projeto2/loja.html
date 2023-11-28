@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            DJV -Cliente
+        </title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <meta charset="utf-8">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </head>
+    <body class="loja">
+      <div class="header" id="myHeader">
+          <h2 class = "t">DJV LOJAS</h2>
+	      <a  href="adm.html" class="voltar" style="right: 400px;">Administre sua loja!</a>
+        <span class="textocarrinho">Arraste para o Carrinho!</span>
+        <div class="carrinho" ondragover="allowDrop(event);" ondrop="drop(event);">
+          <img src="carrinho.png" onclick="showCart()" />
+          <span id="itensN">0</span>
+        </div>
+      </div>
+    <div class="row">
+        <div class="columnleft">
+            <img src="logo.gif" alt="logo" width="100%">
+        </div>
+        <div class="column">
+          <!--
+          =================Página de listagem de produtos==================
+          -->
+          <div id="listaProdutos" class="pag">
+		<p class="titulo"> Selecione um Produto:</p>
+            <select id="categoria" onchange="getProducts(this)"></select>
+            <div id="produtos"></div>
+          </div>
+          <!--
+          =================Página do carrinho==================
+          -->
+          <div id="carrinhoPag" style="display: none;" class="pag">
+            <a href="#" onclick="prodPag();">Voltar para a loja</a>
+            <table id="carrinhoItens">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Produto</th>
+                  <th scope="col">Imagem</th>
+                  <th scope="col">Preço Unitário</th>
+                  <th scope="col">Quantidade</th>
+                  <th scope="col">Remover</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+            <div>Total: R$ <span id="valorTotal">0,00</span></div>
+            <a href="#" onclick="criaPedido()" class="button">Prosseguir com o pedido</a>
+          </div>
+          <!--
+          =================Página de inserção de dados do cliente==================
+          -->
+          <div id="criaPedPag" style="display:none;" class="pag">
+            <h3>Dados pessoais</h3>
+            <form id="formProdutos" onsubmit="dadosCliente(this);return(false);">
+                <label for="clienteNome">Nome:</label>
+                <input id="clienteNome" name="clienteNome" type="text"/>
+                <label for="clienteCpf">CPF:</label>
+                <input id="clienteCpf" name="clienteCpf" type="text" placeholder="000.000.000-00"/>
+                <label for="clienteCep">CEP:</label>
+                <input id="clienteCep" name="clienteCep" type="text" placeholder="00.000-000" onblur="buscaCep(this.parentElement);"/>
+                <label for="clienteLograd">Logradouro:</label>                                <!--CSS - mask para float, duas casas-->
+                <input id="clienteLograd" name="clienteLograd" type="text"/>
+                <label for="clienteNumero">Numero:</label>                                <!--CSS - mask para float, duas casas-->
+                <input id="clienteNumero" name="clienteNumero" type="number"/>
+                <label for="clienteCompl">Complemento:</label>                                <!--CSS - mask para float, duas casas-->
+                <input id="clienteCompl" name="clienteCompl" type="text"/>
+                <label for="clienteBairro">Bairro:</label>
+                <input id="clienteBairro" name="clienteBairro" type="text"/>
+                <label for="clienteCidade">Cidade:</label>                                  <!--CSS - mask para float, três casas-->
+                <input id="clienteCidade" name="clienteCidade" type="text" />
+                <label for="clienteUF">UF:</label>                                  <!--CSS - mask para float, três casas-->
+                <input id="clienteUF" name="clienteUF" type="text" />
+                <button type="submit" class="button">Avançar</button>
+            </form>
+          </div>
+          <!--
+          =================Página de confirmação do pedido==================
+          -->
+          <div id="confirmaPedidoPag" class="pag" style="display: none;">
+              <div class="titles">
+                <h3>Dados do pedido</h3>
+              </div>
+              <ul id="dadosClienteList">
+
+              </ul>
+                <table id="pedidoItens">
+                    <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Produto</th>
+                          <th scope="col">Imagem</th>
+                          <th scope="col">Preço Unitário</th>
+                          <th scope="col">Quantidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div>Total: R$ <span id="valorTotalPedido">0,00</span></div>
+                <a href="#" onclick="finalizaPedido()" class="button">Finalizar</a>
+          </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="scripts_loja.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            DJV - Administração
+        </title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <meta charset="utf-8">
+	      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </head>
+    <body class="adm">
+      <div class="header" id="myHeader">
+          <h2 class = "t">DJV LOJAS</h2>
+      </div>
+      <div class="menu">
+        <div class="columnleft">
+          <img src="logo.gif" alt="logo" width="250px" >
+        </div>
+        <div class="column_botoes">
+        <a href="#" onclick="catProdPag();" class="button_inicial">Gerenciar produtos e categorias</a>
+        <a href="#" onclick="pedidosPag();" class="button_inicial">Gerenciar pedidos</a>
+      </div>
+      <br>
+      <br>
+      </div>
+
+      <!--
+        ==================Página Inícial==================
+      -->
+      <div class="pag" id="homePag">
+      </div>
+      <!--
+        ==================Página para listagem de produtos e categorias==================
+      -->
+      <div id="catProdPag" class="pag main"  style="display: none;">
+        <div class="menu">
+          <div class="titles">
+            <h3>Categorias</h3>
+            <a href="#" onclick="criaCatPag();" class="button">Novo</a>
+          </div>
+            <ul id="categoriasList">
+            </ul>
+        </div>
+        <div class="content">
+          <div class="titles">
+            <h3>Produtos</h3>
+            <a href="#" onclick="criaProdPag();" class="button">Novo</a>
+            <br>
+            <br>
+          </div>
+            <table id="produtosTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Código</th>
+                        <th>Categoria</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                        <th>Imagem</th>
+                        <th>Peso</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <!--
+        ==================Página para criar produtos==================
+      -->
+      <div id="criaProdPag" style="display:none;" class="pag">
+        <h3>Adicionar Produto</h3>
+        <a href="#" onclick="catProdPag();">Voltar</a>
+        <form id="formProdutos">
+            <label for="idCodeProd">Código:</label>
+            <input id="idCodeProd" name="codigo" type="number" placeholder="Ex: 12"/>
+            <label for="idCategoryProd">Categoria:</label>
+            <select name="categoria" id="idCategoryProd">
+            </select><label for="idNameProd">Nome:</label>
+            <input id="idNameProd" name="nome" type="text" placeholder="Mouse"/>
+            <label for="idDescriptionProd">Descrição:</label>
+            <input id="idDescriptionProd" name="descricao" type="text" placeholder="Descritivo do Produto"/>
+            <label for="idPriceProd">Preço:</label>                                <!--CSS - mask para float, duas casas-->
+            <input id="idPriceProd" name="preco" type="text" placeholder="100,00"/>
+            <label for="idImageProd">Imagem:</label>
+            <input id="idImageProd" name="imagem" type="text" placeholder="url da imagem"/>
+            <label for="idWeightProd">Peso:</label>                                  <!--CSS - mask para float, três casas-->
+            <input id="idWeightProd" name="peso" type="text" placeholder="100" />
+            <button type="submit">Adicionar</button>
+        </form>
+      </div>
+
+      <!--
+        ==================Página para editar produtos==================
+      -->
+      <div id="editProdPag" style="display:none;" class="pag">
+        <h3>Editar Produto</h3>
+        <a href="#" onclick="catProdPag();">Voltar</a>
+        <form id="formEditProdutos">
+          <label for="EditIdProd">Id:</label>
+          <input id="EditIdProd" name="id" type="number" readonly />
+          <label for="idEditCodeProd">Código:</label>
+          <input id="idEditCodeProd" name="codigo" type="number" placeholder="Ex: 12"/>
+          <label for="idEditCategoryProd">Categoria:</label>
+          <select name="categoria" id="idEditCategoryProd">
+          </select><label for="idNameProd">Nome:</label>
+          <input id="idEditNameProd" name="nome" type="text" placeholder="Mouse"/>
+          <label for="idEditDescriptionProd">Descrição:</label>
+          <input id="idEditDescriptionProd" name="descricao" type="text" placeholder="Descritivo do Produto"/>
+          <label for="idEditPriceProd">Preço:</label>                                <!--CSS - mask para float, duas casas-->
+          <input id="idEditPriceProd" name="preco" type="text" placeholder="100,00"/>
+          <label for="idEditImageProd">Imagem:</label>
+          <input id="idEditImageProd" name="imagem" type="text" placeholder="url da imagem"/>
+          <label for="idEditWeightProd">Peso:</label>                                  <!--CSS - mask para float, três casas-->
+          <input id="idEditWeightProd" name="peso" type="text" placeholder="100" />
+          <button type="submit">Alterar</button>
+        </form>
+      </div>
+      <!--
+        ==================Página para criar categoria==================
+      -->
+      <div id="criaCatPag" style="display:none;" class="pag">
+        <h3>Criar categoria</h3>
+        <a href="#" onclick="catProdPag();">Voltar</a>
+        <form id="formCategoria">
+            <label for="idNameCat">Nome:</label>
+            <input id="idNameCat" name="nome" type="text" placeholder="Informática"/>
+            <button type="submit">Criar</button>
+        </form>
+      </div>
+      <!--
+        ==================Página para editar categoria==================
+      -->
+      <div id="editCatPag" style="display:none;" class="pag">
+        <h3>Editar categoria</h3>
+        <a href="#" onclick="catProdPag();">Voltar</a>
+        <form id="formEditCategoria">
+            <label for="editCatId">Id:</label>
+            <input id="editCatId" name="id" type="number" readonly />
+            <label for="editNameCat">Nome:</label>
+            <input id="editNameCat" name="nome" type="text" placeholder="Informática"/>
+            <button type="submit">Atualizar</button>
+        </form>
+      </div>
+      <!--
+        ==================Página para listar pedidos==================
+      -->
+      <div id="pedidosPag" class="pag main" style="display: none;">
+        <div class="menu">
+          <div class="titles">
+            <h3>Pedidos</h3>
+          </div>
+            <ul id="pedidosList">
+            </ul>
+        </div>
+        <div class="content">
+          <div class="titles">
+            <h3>Dados do pedido</h3>
+          </div>
+          <ul id="cliente">
+
+          </ul>
+            <table id="pedidoItens">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço Unitário</th>
+                        <th scope="col">Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+      </div>
+        <script type="text/javascript" src="scripts_adm.js"></script>
+    </body>
+</html>
